@@ -1,0 +1,54 @@
+{
+  "name": "slidev-theme-penguin",
+  "version": "2.2.0",
+  "description": "A Penguin theme for Slidev",
+  "author": "Alvaro Saburido <hola@alvarosaburido.dev>",
+  "license": "MIT",
+  "homepage": "https://penguin-theme.alvarosaburido.dev/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvarosaburido/slidev-theme-penguin.git"
+  },
+  "bugs": "https://github.com/alvarosaburido/slidev-theme-penguin/issues",
+  "keywords": [
+    "slidev-theme",
+    "slidev",
+    "slidev-penguin"
+  ],
+  "slidev": {
+    "colorSchema": "both",
+    "highlighter": "shiki",
+    "default": {
+      "aspectRatio": "16/9",
+      "fonts": {
+        "sans": "Inter",
+        "title": "Gilroy",
+        "mono": "Fira Code"
+      }
+    }
+  },
+  "scripts": {
+    "dev": "slidev example.md --open",
+    "build": "slidev build example.md",
+    "export": "slidev export example.md",
+    "release": "release-it",
+    "screenshot": "slidev export example.md --format png"
+  },
+  "dependencies": {
+    "@alvarosabu/ui": "3.0.0-alpha.16",
+    "@slidev/types": "^0.48.7",
+    "prism-theme-vars": "^0.2.4",
+    "vite-svg-loader": "^5.1.0"
+  },
+  "devDependencies": {
+    "@alvarosabu/eslint-config-vue": "^0.4.0",
+    "@iconify-json/la": "^1.1.8",
+    "@iconify-json/logos": "^1.1.42",
+    "@iconify-json/simple-icons": "^1.1.96",
+    "@release-it/conventional-changelog": "^8.0.1",
+    "@slidev/cli": "0.48.7",
+    "playwright-chromium": "^1.42.1",
+    "release-it": "^17.1.1",
+    "sass": "^1.72.0"
+  }
+}

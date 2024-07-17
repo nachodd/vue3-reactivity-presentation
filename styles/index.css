@@ -1,0 +1,41 @@
+@import url(https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css);
+
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+  src: local('Gilroy ExtraBold'), url('/fonts/Gilroy-ExtraBold.otf') format('opentype'),
+    url('/fonts/Gilroy-ExtraBold.woff') format('woff');
+}
+/*
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: medium;
+  font-display: swap;
+  src: local('Gilroy ExtraBold'), url('/fonts/Gilroy-ExtraBold.woff') format('woff');
+}
+ */
+
+.slidev-layout {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: 'Gilroy', sans-serif;
+  }
+}
+
+.prose :where(:not(pre)>code):not(:where(.not-prose,.not-prose *)) {
+  padding: inherit !important
+}
+.prose :where(code):not(:where(.not-prose,.not-prose *)) {
+  font-family: inherit !important;
+  border-radius: 0.25rem !important;
+  padding: 0.125rem 0.25rem !important;
+}
+
+.btn {
+  @apply px-5 py-2.5 font-bold bg-green-100 hover:bg-green-200 hover:text-green-600 text-green-500 rounded-lg text-sm;
+}
