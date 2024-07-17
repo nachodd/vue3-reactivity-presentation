@@ -208,7 +208,7 @@ layout: new-section
 
 # Reactivity Caveats
 
-![Reactivity Caveats](reactivity-sign.jpg)
+![Reactivity Caveats](/reactivity-sign.jpg)
 
 ---
 
@@ -546,7 +546,7 @@ layout: new-section
 
 # How Reactivity Works in Vue
 
-![How Reactivity Works in Vue](how-does-this-work.jpg)
+![How Reactivity Works in Vue](/how-does-this-work.jpg)
 
 <style scoped>
 .slidev-layout img {
@@ -839,7 +839,7 @@ layout: new-section
 
 # Reactivity Debugging & More
 
-![debugging](debugging.jpeg)
+![debugging](/debugging.jpeg)
 
 <style scoped>
 img {
