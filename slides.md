@@ -585,11 +585,12 @@ function update() {
 ::right::
 
 <v-click>
-The `update()` function produces a **side effect**, or **effect** for short, because it modifies the state of the program.
 
-`A0` and `A1` are considered dependencies of the effect, as their values are used to perform the effect. The effect is said to be a subscriber to its dependencies.
+<code>update()</code> =>  <strong>side effect</strong> or <strong>effect</strong> for short, because it modifies the state of the program.
 
-What we need is a magic function that can invoke `update()` (the **effect**) whenever `A0` or `A1` (the **dependencies**) change.
+`A0` & `A1` => dependencies of the effect.
+**effect** => subscriber to its dependencies.
+
 
 ```js
 function whenDepsChange(update)
@@ -597,25 +598,25 @@ function whenDepsChange(update)
 </v-click>
 
 <!--
-[TEXT then EXAMPLE]
 
+- Imagine a Spreadsheet with cells `A0`, `A1` and `A2`.
+- `A2` is equal to the sum of `A0` and `A1`
+- In JS, we could model this as:
+
+[CODE]
 [CLICK]
+
+The `update()` function produces a **side effect**, or **effect** for short, because it modifies the state of the program.
+
+`A0` and `A1` are considered dependencies of the effect, as their values are used to perform the effect. The effect is said to be a subscriber to its dependencies.
+
+What we need is a magic function that can invoke `update()` (the **effect**) whenever `A0` or `A1` (the **dependencies**) change.
 
 When we mutate `A0`, `A2` does not change automatically.
 In order to re-run the code that updates `A2`, let's wrap it in a function:
-
-
 ```js
-function whenDepsChange(update) {
-  const effect = () => {
-    activeEffect = effect
-    update()
-    activeEffect = null
-  }
-  effect()
-}
+function whenDepsChange(update)
 ```
-
 This `whenDepsChange()` function has the following tasks:
 
 1. Track when a variable is read. E.g. when evaluating the expression A0 + A1, both A0 and A1 are read.
@@ -998,12 +999,13 @@ console.log(toRaw(reactiveFoo) === foo) // true
 <!--
 Details:
 
+`toRaw()` can return the original object from proxies created by `reactive()`, `readonly()`, `shallowReactive()` or `shallowReadonly()`.
+
 This is an escape hatch that can be used to temporarily read without incurring proxy access / tracking overhead or write without triggering changes. It is not recommended to hold a persistent reference to the original object. Use with caution.
 -->
 
 ---
-layout: two-cols
----
+
 # Ohter usefull APIs
 
 ### markRaw()
@@ -1027,11 +1029,13 @@ const bar = reactive({ foo })
 console.log(isReactive(bar.foo)) // false
 ```
 
-::right::
+<!--
+[TEXT]
 
 `markRaw()` and shallow APIs such as `shallowReactive()` allow you to selectively opt-out of the default deep reactive/readonly conversion and embed raw, non-proxied objects in your state graph. They can be used for various reasons:
 - Some values simply should not be made reactive, for example a complex 3rd party class instance, or a Vue component object.
 - Skipping proxy conversion can provide performance improvements when rendering large lists with immutable data sources.
+-->
 
 ---
 
@@ -1039,7 +1043,7 @@ console.log(isReactive(bar.foo)) // false
 
 ### effectScope()
 
-Creates an effect scope object which can capture the reactive effects (i.e. computed and watchers) created within it so that these effects can be disposed together. For detailed use cases of this API, please consult its corresponding [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md).
+For detailed use cases of this API, check the [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md).
 
 
 <div class="grid grid-cols-2 gap-16">
@@ -1073,6 +1077,10 @@ scope.stop()
   </div>
 </div>
 
+<!--
+Creates an effect scope object which can capture the reactive effects (i.e. computed and watchers) created within it so that these effects can be disposed together. For detailed use cases of this API, please consult its corresponding [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md).
+-->
+
 
 ---
 
@@ -1095,12 +1103,6 @@ type CustomRefFactory<T> = (
 }
 ```
 
-- Details
-
-`customRef()` expects a factory function, which receives track and trigger functions as arguments and should return an object with get and set methods.
-
-In general, `track()` should be called inside `get(),` and `trigger()` should be called inside `set()`. However, you have full control over when they should be called, or whether they should be called at all.
-
 <style scoped>
 .slidev-layout h1 {
   margin-bottom: 10px;
@@ -1110,15 +1112,23 @@ In general, `track()` should be called inside `get(),` and `trigger()` should be
 }
 </style>
 
+<!--
+- Details
+
+`customRef()` expects a factory function, which receives track and trigger functions as arguments and should return an object with get and set methods.
+
+In general, `track()` should be called inside `get(),` and `trigger()` should be called inside `set()`. However, you have full control over when they should be called, or whether they should be called at all.
+-->
+
 ---
 
 # Ohter usefull APIs
 
 ### customRef()
 
-<br>
+- Example (please use [refDebounce](https://vueuse.org/shared/refDebounced/) from [VueUse](https://vueuse.org/) instead):
 
-- Example:
+<br>
 
 <div class="overflow-hidden text-center self-end">
   <iframe
@@ -1140,6 +1150,20 @@ In general, `track()` should be called inside `get(),` and `trigger()` should be
 class: 'grid text-center align-self-center justify-self-center'
 ---
 
+
 # Gracias totales
 
+<div class="flex justify-center">
+  <img
+    src="/nacho-pixel-32.png"
+    class="w-16 h-16 object-contain border-1 p-1 border-white round"
+  />
+</div>
+
 [GitHub Repo](https://github.com/nachodd/vue3-reactivity-presentation)
+
+<style scoped>
+.round {
+  @apply rounded-full !important;
+}
+</style>
